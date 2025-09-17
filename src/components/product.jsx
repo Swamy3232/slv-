@@ -333,7 +333,7 @@ const Product = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">Venkys1969@gmail.com</p>
+            <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
             <p className="text-gray-400">Phone: 9008503517</p>
           </div>
         </div>
