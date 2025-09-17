@@ -84,7 +84,7 @@ const ContactUs = () => {
 
   const address = "SLV Packaging, 10/11 Chandana Layout, Kebbehalla Main RD, Sunkadakatte, Bangalore, Karnataka, India - 560091";
   const phone = "9008503517";
-  const email = "swamiaws85@gmail.com";
+  const email = "Venkys1969@gmail.com";
   const whatsappLink = `https://wa.me/${phone}`;
   const mapsLink = "https://maps.google.com/maps?q=12.9836571%2C77.5075547&z=17&hl=en";
 
@@ -97,17 +97,22 @@ const ContactUs = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
-  };
+  e.preventDefault();
+
+  const subject = "Quotation Request";
+  const body = `Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
+
+  // Open default email client with prefilled details
+  window.location.href = `mailto:swamiaws85@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+
+  // Reset form
+  setFormData({ name: "", email: "", message: "" });
+  setIsSubmitted(true);
+
+  setTimeout(() => {
+    setIsSubmitted(false);
+  }, 3000);
+};
 
   return (
     <div className="min-h-screen bg-gray-50 font-sans overflow-hidden">
