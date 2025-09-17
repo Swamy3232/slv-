@@ -98,7 +98,7 @@ const HomePage = () => {
             customized to meet diverse customer requirements.
           </p>
           <button
-  onClick={() => window.location.href = "/contact"}
+  onClick={() => window.location.href = "/quote"}
   className="mt-10 bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
 >
   Get a Quote

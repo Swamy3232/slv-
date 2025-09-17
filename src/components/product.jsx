@@ -299,7 +299,7 @@ const Product = () => {
               
               <div className="flex space-x-4">
              <button
-    onClick={() => window.location.href = "/contact"}
+    onClick={() => window.location.href = "/quote"}
     className="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300"
   >
     Request Quote
