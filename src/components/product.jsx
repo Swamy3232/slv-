@@ -15,7 +15,7 @@ import Product9Img from "../assets/zip.jpeg";
 import product10Img from "../assets/eps.jpeg";
 import product11Img from "../assets/kraft.jpeg";
 // Custom SLV Logo Component (same as other pages)
-const SLVLogo = ({ className = "h-16 w-auto" }) => {
+const SLVLogo = ({ className = "h-16 w-auto", textColor = "#1f2937" }) => {
   return (
     <svg
       className={className}
@@ -30,26 +30,30 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
         </linearGradient>
       </defs>
 
-      {/* Gradient Box */}
       <rect x="0" y="10" width="50" height="40" rx="6" fill="url(#logoGradient)" />
-
-      {/* Diamond Shape */}
       <polygon points="25,15 40,30 25,45 10,30" fill="white" opacity="0.85" />
 
-      {/* Company Name */}
       <text
         x="60"
         y="38"
         fontFamily="Arial, sans-serif"
         fontSize="26"
         fontWeight="700"
-        fill="#1f2937"
+        fill={textColor}
       >
         SLV Packaging
       </text>
     </svg>
   );
 };
+
+const industries = [
+    "Electronics Industry",
+    "Pharma",
+    "Biotechnology",
+    "Life Sciences",
+    "Network Systems"
+  ];
 
 const Product = () => {
   const sectionRefs = useRef([]);
@@ -242,15 +246,16 @@ const Product = () => {
             onClick={() => setSelectedProduct(product)}
           >
             <div className="relative overflow-hidden">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-48 object-cover transition-transform duration-500 hover:scale-105"
-              />
-              <div className="absolute top-4 right-4 bg-amber-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
-                {product.category.toUpperCase()}
-              </div>
-            </div>
+  <img
+    src={product.image}
+    alt={product.name}
+    className="w-full h-48 object-cover transition-transform duration-500 hover:scale-102 max-h-48"
+  />
+  <div className="absolute top-4 right-4 bg-amber-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
+    {product.category.toUpperCase()}
+  </div>
+</div>
+
             <div className="p-6">
               <h3 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h3>
               <p className="text-gray-600 mb-4">{product.description}</p>
@@ -332,13 +337,21 @@ const Product = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-6">
+      <footer className="bg-gray-800 text-white py-12 px-6 mt-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <SLVLogo className="h-10 w-auto mb-4" />
-            <p className="text-white-400">
-              High-quality corrugated boxes customized to your requirements.
+            <SLVLogo className="h-10 w-auto mb-4" textColor="#ffffff" />
+            <p className="text-gray-400">
+              High-quality corrugated boxes, EPE foam solutions, and packaging services.
             </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold mb-4">Industries Served</h3>
+            <ul className="text-gray-400 space-y-2">
+              {industries.map((industry, idx) => (
+                <li key={idx}>{industry}</li>
+              ))}
+            </ul>
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>

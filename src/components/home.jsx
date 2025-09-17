@@ -1,9 +1,10 @@
 // src/pages/HomePage.jsx
 import { useEffect, useRef } from "react";
 import Navbar from "./nav";
-import slv1 from "../assets/slv1.png";
+import slv2 from "../assets/slv2.png";
+
 // Custom SLV Logo Component
-const SLVLogo = ({ className = "h-16 w-auto" }) => {
+const SLVLogo = ({ className = "h-16 w-auto", textColor = "#1f2937" }) => {
   return (
     <svg
       className={className}
@@ -18,20 +19,16 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
         </linearGradient>
       </defs>
 
-      {/* Gradient Box */}
       <rect x="0" y="10" width="50" height="40" rx="6" fill="url(#logoGradient)" />
-
-      {/* Diamond Shape */}
       <polygon points="25,15 40,30 25,45 10,30" fill="white" opacity="0.85" />
 
-      {/* Company Name */}
       <text
         x="60"
         y="38"
         fontFamily="Arial, sans-serif"
         fontSize="26"
         fontWeight="700"
-        fill="#1f2937"
+        fill={textColor}
       >
         SLV Packaging
       </text>
@@ -39,8 +36,13 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
   );
 };
 
-
-
+const industries = [
+    "Electronics Industry",
+    "Pharma",
+    "Biotechnology",
+    "Life Sciences",
+    "Network Systems"
+  ];
 const HomePage = () => {
   const sectionRefs = useRef([]);
 
@@ -94,15 +96,14 @@ const HomePage = () => {
             Welcome to <span className="text-amber-600">SLV Packaging</span>
           </h1>
           <p className="text-gray-700 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-            Founded in 2013, SLV Packaging delivers high-quality corrugated boxes
-            customized to meet diverse customer requirements.
+            Founded in 2013, SLV Packaging delivers high-quality <span className="font-semibold">corrugated boxes</span>, <span className="font-semibold">EPE foam solutions</span>, and comprehensive <span className="font-semibold">packaging services</span> customized to meet diverse customer requirements.
           </p>
           <button
-  onClick={() => window.location.href = "/quote"}
-  className="mt-10 bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
->
-  Get a Quote
-</button>
+            onClick={() => window.location.href = "/quote"}
+            className="mt-10 bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            Get a Quote
+          </button>
         </div>
       </section>
 
@@ -118,22 +119,19 @@ const HomePage = () => {
                 Company <span className="text-amber-600">Overview</span>
               </h2>
               <p className="text-gray-700 text-lg leading-relaxed">
-                SLV Packaging, founded by Mr. M. Venkatesh, is a proprietorship company
-                with 25 years of industry experience. We specialize in manufacturing
-                high-quality corrugated boxes, customized to meet diverse customer
-                requirements.
+                SLV Packaging, founded by Mr. M. Venkatesh, is a proprietorship company with 25 years of industry experience. We specialize in manufacturing <span className="font-semibold">high-quality corrugated boxes</span>, providing <span className="font-semibold">EPE foam solutions</span>, and delivering comprehensive <span className="font-semibold">packaging services</span> to meet diverse customer requirements.
               </p>
             </div>
           </div>
           <div className="w-full md:w-1/2">
-  <div className="bg-gray-800 rounded-2xl h-64 md:h-80 flex items-center justify-center overflow-hidden">
-    <img 
-      src={slv1} 
-      alt="SLV Packaging" 
-      className="object-contain h-full w-full"
-    />
-  </div>
-</div>
+            <div className="bg-gray-800 rounded-2xl h-64 md:h-80 flex items-center justify-center overflow-hidden">
+              <img 
+                src={slv2} 
+                alt="SLV Packaging" 
+                className="object-contain h-full w-full"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -230,20 +228,27 @@ const HomePage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-6">
+      <footer className="bg-gray-800 text-white py-12 px-6 mt-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <SLVLogo className="h-10 w-auto mb-4" />
+            <SLVLogo className="h-10 w-auto mb-4" textColor="#ffffff" />
             <p className="text-gray-400">
-              High-quality corrugated boxes customized to your requirements.
+              High-quality corrugated boxes, EPE foam solutions, and packaging services.
             </p>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold mb-4">Industries Served</h3>
+            <ul className="text-gray-400 space-y-2">
+              {industries.map((industry, idx) => (
+                <li key={idx}>{industry}</li>
+              ))}
+            </ul>
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
             <p className="text-gray-400">Phone: 9008503517</p>
           </div>
-      
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">
           <p>© {new Date().getFullYear()} SLV Packaging. All rights reserved.</p>
@@ -252,5 +257,4 @@ const HomePage = () => {
     </div>
   );
 };
-
 export default HomePage;

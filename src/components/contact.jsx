@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "./nav";
 
 // Custom SLV Logo Component (same as other pages)
-const SLVLogo = ({ className = "h-16 w-auto" }) => {
+const SLVLogo = ({ className = "h-16 w-auto", textColor = "#1f2937" }) => {
   return (
     <svg
       className={className}
@@ -18,20 +18,16 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
         </linearGradient>
       </defs>
 
-      {/* Gradient Box */}
       <rect x="0" y="10" width="50" height="40" rx="6" fill="url(#logoGradient)" />
-
-      {/* Diamond Shape */}
       <polygon points="25,15 40,30 25,45 10,30" fill="white" opacity="0.85" />
 
-      {/* Company Name */}
       <text
         x="60"
         y="38"
         fontFamily="Arial, sans-serif"
         fontSize="26"
         fontWeight="700"
-        fill="#1f2937"
+        fill={textColor}
       >
         SLV Packaging
       </text>
@@ -39,6 +35,14 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
   );
 };
 
+
+const industries = [
+    "Electronics Industry",
+    "Pharma",
+    "Biotechnology",
+    "Life Sciences",
+    "Network Systems"
+  ];
 
 const ContactUs = () => {
   const sectionRefs = useRef([]);
@@ -324,20 +328,27 @@ const whatsappLink = `https://wa.me/91${phone}`;
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-12 px-6">
+      <footer className="bg-gray-800 text-white py-12 px-6 mt-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <SLVLogo className="h-10 w-auto mb-4" />
+            <SLVLogo className="h-10 w-auto mb-4" textColor="#ffffff" />
             <p className="text-gray-400">
-              High-quality corrugated boxes customized to your requirements.
+              High-quality corrugated boxes, EPE foam solutions, and packaging services.
             </p>
           </div>
           <div>
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">Email: {email}</p>
-            <p className="text-gray-400">Phone: {phone}</p>
+            <h3 className="text-lg font-bold mb-4">Industries Served</h3>
+            <ul className="text-gray-400 space-y-2">
+              {industries.map((industry, idx) => (
+                <li key={idx}>{industry}</li>
+              ))}
+            </ul>
           </div>
-          
+          <div>
+            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+            <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
+            <p className="text-gray-400">Phone: 9008503517</p>
+          </div>
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">
           <p>© {new Date().getFullYear()} SLV Packaging. All rights reserved.</p>
