@@ -128,7 +128,7 @@ const HomePage = () => {
           <div className="w-full md:w-1/2">
   <div className="bg-gray-800 rounded-2xl h-64 md:h-80 flex items-center justify-center overflow-hidden">
     <img 
-      src={slv} 
+      src={slv1} 
       alt="SLV Packaging" 
       className="object-contain h-full w-full"
     />
