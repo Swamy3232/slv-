@@ -41,7 +41,8 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
 
 const AboutUs = () => {
   const sectionRefs = useRef([]);
-  const [activeRole, setActiveRole] = useState(0);
+  const [activeRole, setActiveRole] = useState(0); // desktop tabs
+  const [openAccordion, setOpenAccordion] = useState(null); // mobile accordion
 
   useEffect(() => {
     // Add intersection observer for scroll animations
@@ -50,7 +51,6 @@ const AboutUs = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("animate-fade-in-up");
-            // Remove observer after animation
             observer.unobserve(entry.target);
           }
         });
@@ -194,7 +194,7 @@ const AboutUs = () => {
           <div className="absolute top-1/3 -right-4 w-16 h-16 bg-amber-300 rounded-full opacity-30 animate-bounce-slow"></div>
           <div className="absolute bottom-10 left-1/4 w-20 h-20 bg-orange-200 rounded-full opacity-25 animate-ping"></div>
         </div>
-        
+
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="flex justify-center mb-8">
             <SLVLogo className="h-16 md:h-20 w-auto" />
@@ -209,10 +209,7 @@ const AboutUs = () => {
       </section>
 
       {/* Company Commitment */}
-      <section 
-        ref={addToRefs}
-        className="max-w-7xl mx-auto px-6 py-16 md:py-24"
-      >
+      <section ref={addToRefs} className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="bg-white rounded-2xl p-8 shadow-lg transform transition-transform duration-300 hover:scale-[1.01]">
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-6">
             Our <span className="text-amber-600">Commitment</span>
@@ -224,28 +221,27 @@ const AboutUs = () => {
       </section>
 
       {/* Organizational Hierarchy */}
-      <section 
-        ref={addToRefs}
-        className="bg-white py-16 md:py-24 px-6"
-      >
+      <section ref={addToRefs} className="bg-white py-16 md:py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-extrabold text-gray-800 mb-6 text-center">
             Organizational <span className="text-amber-600">Structure</span>
           </h2>
-          
-          {/* Role Selection Tabs (Mobile) */}
+
+          {/* Role Selection Tabs (Mobile Dropdown) */}
           <div className="md:hidden mb-8">
-            <select 
+            <select
               className="w-full p-3 rounded-lg border border-amber-300 bg-amber-50 text-gray-800 focus:ring-2 focus:ring-amber-500 focus:outline-none"
               value={activeRole}
               onChange={(e) => setActiveRole(parseInt(e.target.value))}
             >
               {management.map((person, idx) => (
-                <option key={idx} value={idx}>{person.title}</option>
+                <option key={idx} value={idx}>
+                  {person.title}
+                </option>
               ))}
             </select>
           </div>
-          
+
           {/* Role Selection Tabs (Desktop) */}
           <div className="hidden md:flex justify-center mb-10 overflow-x-auto">
             <div className="flex space-x-1 bg-amber-100 p-2 rounded-xl">
@@ -259,13 +255,13 @@ const AboutUs = () => {
                   }`}
                   onClick={() => setActiveRole(idx)}
                 >
-                  {person.title.split(' ')[0]}
+                  {person.title.split(" ")[0]}
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Role Details */}
+          {/* Role Details (Desktop / Dropdown) */}
           <div className="bg-amber-50 rounded-2xl p-6 md:p-8 shadow-md">
             <h3 className="text-2xl md:text-3xl font-semibold text-amber-700 mb-6 pb-3 border-b border-amber-200">
               {management[activeRole].title}
@@ -304,33 +300,39 @@ const AboutUs = () => {
             </div>
           </div>
 
-          {/* All Roles Accordion (for smaller screens) */}
-          <div className="mt-12 space-y-6">
+          {/* All Roles Accordion (Mobile) */}
+          <div className="mt-12 space-y-6 md:hidden">
             {management.map((person, idx) => (
               <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden">
-                <button 
+                <button
                   className="w-full p-4 text-left font-semibold text-gray-800 bg-amber-100 flex justify-between items-center"
-                  onClick={() => setActiveRole(activeRole === idx ? -1 : idx)}
+                  onClick={() =>
+                    setOpenAccordion(openAccordion === idx ? null : idx)
+                  }
                 >
                   {person.title}
                   <span className="transform transition-transform duration-300">
-                    {activeRole === idx ? '▲' : '▼'}
+                    {openAccordion === idx ? "▲" : "▼"}
                   </span>
                 </button>
-                
-                {activeRole === idx && (
+
+                {openAccordion === idx && (
                   <div className="p-4 bg-amber-50 animate-fade-in">
                     <div className="mb-4">
-                      <h4 className="font-bold text-gray-800 mb-2">Responsibilities:</h4>
+                      <h4 className="font-bold text-gray-800 mb-2">
+                        Responsibilities:
+                      </h4>
                       <ul className="list-disc list-inside text-gray-700 pl-4">
                         {person.responsibilities.map((res, i) => (
                           <li key={i}>{res}</li>
                         ))}
                       </ul>
                     </div>
-                    
+
                     <div>
-                      <h4 className="font-bold text-gray-800 mb-2">Authority:</h4>
+                      <h4 className="font-bold text-gray-800 mb-2">
+                        Authority:
+                      </h4>
                       <ul className="list-disc list-inside text-gray-700 pl-4">
                         {person.authority.map((auth, i) => (
                           <li key={i}>{auth}</li>
@@ -359,7 +361,6 @@ const AboutUs = () => {
             <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
             <p className="text-gray-400">Phone: 9008503517</p>
           </div>
-          
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">
           <p>© {new Date().getFullYear()} SLV Packaging. All rights reserved.</p>

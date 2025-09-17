@@ -82,7 +82,7 @@ const ContactUs = () => {
     }
   };
 
-  const address = "7/1 Kurabarahalli, Bangalore-560086";
+  const address = "SLV Packaging, 10/11 Chandana Layout, Kebbehalla Main RD, Sunkadakatte, Bangalore, Karnataka, India - 560091";
   const phone = "9008503517";
   const email = "Venkys1969@gmail.com";
   const whatsappLink = `https://wa.me/${phone}`;

@@ -9,10 +9,11 @@ import Product3Img from "../assets/pink-double.jpg";
 import Product4Img from "../assets/pink-foam.png";
 import Product5Img from "../assets/shieldbag.jpg";
 import Product6Img from "../assets/strecthed.jpg";
-import Product7Img from "../assets/taps.jpg";
+import Product7Img from "../assets/bop.jpeg";
 import Product8Img from "../assets/white-buffer.jpg";
-import Product9Img from "../assets/zip-lock.jpg";
+import Product9Img from "../assets/zip.jpeg";
 import product10Img from "../assets/eps.jpeg";
+import product11Img from "../assets/kraft.jpeg";
 // Custom SLV Logo Component (same as other pages)
 const SLVLogo = ({ className = "h-16 w-auto" }) => {
   return (
@@ -158,6 +159,13 @@ const Product = () => {
         description: "Expanded polystyrene boxes for temperature-sensitive shipments",
         category: "boxes",
         features: ["Thermal insulation", "Lightweight", "Custom sizes"]
+    },
+    {
+        name: "KRAFT PAPER TAPE",
+        image: product11Img,
+        description: "Eco-friendly kraft paper tape for sealing and packaging",
+        category: "tapes",
+        features: ["Biodegradable", "Strong adhesion", "Writable surface"]
     }
   ];
 
@@ -290,12 +298,13 @@ const Product = () => {
               </ul>
               
               <div className="flex space-x-4">
-                <button className="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300">
-                  Request Quote
-                </button>
-                <button className="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-3 px-6 rounded-lg transition-colors duration-300">
-                  Download Brochure
-                </button>
+             <button
+    onClick={() => window.location.href = "/contact"}
+    className="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-medium py-3 px-6 rounded-lg transition-colors duration-300"
+  >
+    Request Quote
+  </button>
+                
               </div>
             </div>
           </div>

@@ -1,7 +1,7 @@
 // src/pages/HomePage.jsx
 import { useEffect, useRef } from "react";
 import Navbar from "./nav";
-import slv1 from "../assets/slv.png";
+import slv1 from "../assets/slv1.png";
 // Custom SLV Logo Component
 const SLVLogo = ({ className = "h-16 w-auto" }) => {
   return (
