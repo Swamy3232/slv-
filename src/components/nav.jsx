@@ -11,6 +11,7 @@ const Navbar = () => {
     { name: "About Us", href: "/about" },
     { name: "Products", href: "/products" },
     { name: "Contact & Location", href: "/contact" },
+
   ];
 
   useEffect(() => {
@@ -67,7 +68,7 @@ const Navbar = () => {
 
         {/* Call to Action */}
         <a
-          href="/contact"
+          href="/quote"
           className="hidden md:inline-flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium text-sm shadow-md hover:shadow-lg hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 transform hover:-translate-y-0.5"
         >
           <svg
@@ -144,7 +145,7 @@ const Navbar = () => {
             ))}
             <li className="pt-3 mt-2 border-t border-gray-200">
               <a
-                href="/contact"
+                href="/quote"
                 onClick={() => setIsOpen(false)}
                 className="flex justify-center items-center py-3 px-5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium hover:from-indigo-700 hover:to-blue-700 transition-all duration-300"
               >

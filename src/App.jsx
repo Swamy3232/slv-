@@ -5,7 +5,7 @@ import HomePage from "./components/home";
 import AboutUs from "./components/about.jsx";
 import Product from "./components/product.jsx";
 import ContactUs from "./components/contact.jsx";
-
+import GetQuote from "./components/quaote.jsx";
 const App = () => {
   return (
     <Router>
@@ -19,6 +19,7 @@ const App = () => {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/products" element={<Product />} />
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/quote" element={<GetQuote />} />
         </Routes>
       </div>
     </Router>
