@@ -24,35 +24,42 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-gradient-to-r from-gray-50 via-white to-gray-50 shadow-md py-2 border-b border-gray-200"
-          : "bg-gradient-to-r from-white via-gray-50 to-white py-4"
+          ? "bg-white/95 backdrop-blur-md shadow-lg py-2 border-b border-gray-100"
+          : "bg-white/80 backdrop-blur-sm py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         {/* Logo */}
-        <a href="/" className="flex items-center">
-          <div className="w-12 h-12 bg-gray-800 rounded-xl flex items-center justify-center shadow-md">
+        <a href="/" className="flex items-center group">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-700 to-indigo-800 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
             <span className="text-white font-bold text-xl tracking-tight">SLV</span>
           </div>
           <div className="ml-3">
-            <div className="text-xl font-semibold text-gray-800 tracking-tight">Packaging</div>
-            <div className="text-xs text-gray-500 mt-0.5">Since 2013</div>
+            <div className="text-xl font-bold text-gray-800 tracking-tight group-hover:text-indigo-700 transition-colors">
+              Packaging
+            </div>
+            <div className="text-xs text-gray-500 mt-0.5 tracking-wider">SINCE 2013</div>
           </div>
         </a>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6 text-gray-700 font-medium">
+        <ul className="hidden md:flex space-x-1 text-gray-700 font-medium">
           {navLinks.map((link) => (
             <li key={link.name} className="relative">
               <a
                 href={link.href}
-                className={`px-3 py-2 rounded-lg transition-colors duration-200 relative ${
+                className={`px-4 py-2.5 rounded-xl transition-all duration-200 relative group ${
                   activeLink === link.href
-                    ? "text-gray-900 font-semibold after:block after:absolute after:-bottom-1 after:left-0 after:w-full after:h-0.5 after:bg-gray-900"
-                    : "hover:text-gray-900 hover:after:block hover:after:absolute hover:after:-bottom-1 hover:after:left-0 hover:after:w-full hover:after:h-0.5 hover:after:bg-gray-400"
+                    ? "text-indigo-700 font-semibold bg-indigo-50"
+                    : "hover:text-indigo-600"
                 }`}
               >
                 {link.name}
+                <span
+                  className={`absolute -bottom-1 left-4 w-0 h-0.5 bg-indigo-600 transition-all duration-300 group-hover:w-2/3 ${
+                    activeLink === link.href ? "w-2/3" : ""
+                  }`}
+                ></span>
               </a>
             </li>
           ))}
@@ -60,30 +67,43 @@ const Navbar = () => {
 
         {/* Call to Action */}
         <a
-          href="/quote"
-          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-lg bg-gray-900 text-white font-medium text-sm shadow hover:bg-gray-800 transition-colors duration-200"
+          href="/contact"
+          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium text-sm shadow-md hover:shadow-lg hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 transform hover:-translate-y-0.5"
         >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+              clipRule="evenodd"
+            />
+          </svg>
           Get Quote
         </a>
 
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden w-10 h-10 flex flex-col justify-center items-center rounded-lg bg-gray-100 focus:outline-none"
+          className="md:hidden w-10 h-10 flex flex-col justify-center items-center rounded-xl bg-gray-50 hover:bg-indigo-50 focus:outline-none transition-colors duration-200"
+          aria-label="Toggle menu"
         >
           <span
-            className={`block w-6 h-0.5 bg-gray-700 mb-1.5 transition-transform ${
-              isOpen ? "rotate-45 translate-y-2.5" : ""
+            className={`block w-6 h-0.5 bg-gray-700 mb-1.5 transition-transform duration-300 ${
+              isOpen ? "rotate-45 translate-y-2" : ""
             }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-gray-700 mb-1.5 transition-opacity ${
+            className={`block w-6 h-0.5 bg-gray-700 mb-1.5 transition-opacity duration-300 ${
               isOpen ? "opacity-0" : "opacity-100"
             }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-gray-700 transition-transform ${
-              isOpen ? "-rotate-45 -translate-y-2.5" : ""
+            className={`block w-6 h-0.5 bg-gray-700 transition-transform duration-300 ${
+              isOpen ? "-rotate-45 -translate-y-2" : ""
             }`}
           />
         </button>
@@ -91,29 +111,55 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
-          <ul className="flex flex-col p-4 space-y-2">
+        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl">
+          <ul className="flex flex-col p-4 space-y-1">
             {navLinks.map((link) => (
               <li key={link.name}>
                 <a
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className={`block py-3 px-5 rounded-lg transition-colors duration-200 ${
+                  className={`flex items-center py-3 px-5 rounded-xl transition-all duration-200 ${
                     activeLink === link.href
-                      ? "bg-gray-50 text-gray-900 font-semibold"
+                      ? "bg-indigo-50 text-indigo-700 font-semibold"
                       : "hover:bg-gray-50 text-gray-700"
                   }`}
                 >
                   {link.name}
+                  {activeLink === link.href && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-4 w-4 ml-auto text-indigo-600"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                  )}
                 </a>
               </li>
             ))}
-            <li className="pt-2 mt-2 border-t border-gray-200">
+            <li className="pt-3 mt-2 border-t border-gray-200">
               <a
-                href="/quote"
+                href="/contact"
                 onClick={() => setIsOpen(false)}
-                className="block py-3 px-5 rounded-lg bg-gray-900 text-white font-medium text-center hover:bg-gray-800"
+                className="flex justify-center items-center py-3 px-5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium hover:from-indigo-700 hover:to-blue-700 transition-all duration-300"
               >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                    clipRule="evenodd"
+                  />
+                </svg>
                 Get Quote
               </a>
             </li>
