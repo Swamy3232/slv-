@@ -103,7 +103,7 @@ const ContactUs = () => {
   const body = `Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
 
   // Open default email client with prefilled details
-  window.location.href = `mailto:swamiaws85@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+  window.location.href = `mailto:Venkys1969@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
 
   // Reset form
   setFormData({ name: "", email: "", message: "" });

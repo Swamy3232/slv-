@@ -1,5 +1,4 @@
 // src/pages/GetQuote.jsx
-import { useState } from "react";
 import Navbar from "./nav";
 
 // Reuse your SLV Logo
@@ -35,37 +34,6 @@ const SLVLogo = ({ className = "h-16 w-auto" }) => {
 };
 
 const GetQuote = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    company: "",
-    email: "",
-    phone: "",
-    requirements: ""
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Quote Request:", formData);
-    setIsSubmitted(true);
-
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: "",
-        company: "",
-        email: "",
-        phone: "",
-        requirements: ""
-      });
-    }, 3000);
-  };
-
   return (
     <div className="min-h-screen bg-gray-50 font-sans overflow-hidden">
       <Navbar />
@@ -90,98 +58,61 @@ const GetQuote = () => {
             Get Your Quote
           </h2>
 
-          {isSubmitted ? (
-            <div className="bg-green-100 text-green-700 p-4 rounded-lg text-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mx-auto mb-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 
-                9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <p className="font-medium">
-                Thank you! We’ll prepare your quote and contact you shortly.
-              </p>
+          <form className="flex flex-col gap-6">
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">Your Name</label>
+              <input
+                type="text"
+                placeholder="Enter your name"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
+              />
             </div>
-          ) : (
-            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">Company</label>
+              <input
+                type="text"
+                placeholder="Your company name"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
+              />
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Your Name</label>
+                <label className="block text-gray-700 font-medium mb-2">Email</label>
                 <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  placeholder="Enter your name"
-                  required
+                  type="email"
+                  placeholder="Enter your email"
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
                 />
               </div>
-
               <div>
-                <label className="block text-gray-700 font-medium mb-2">Company</label>
+                <label className="block text-gray-700 font-medium mb-2">Phone</label>
                 <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleInputChange}
-                  placeholder="Your company name"
+                  type="tel"
+                  placeholder="Enter your phone number"
                   className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
                 />
               </div>
+            </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    placeholder="Enter your email"
-                    required
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
-                  />
-                </div>
-                <div>
-                  <label className="block text-gray-700 font-medium mb-2">Phone</label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="Enter your phone number"
-                    required
-                    className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
-                  />
-                </div>
-              </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-2">Requirements</label>
+              <textarea
+                rows={5}
+                placeholder="Describe your packaging requirements"
+                className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
+              />
+            </div>
 
-              <div>
-                <label className="block text-gray-700 font-medium mb-2">Requirements</label>
-                <textarea
-                  name="requirements"
-                  rows={5}
-                  value={formData.requirements}
-                  onChange={handleInputChange}
-                  placeholder="Describe your packaging requirements"
-                  required
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-amber-500"
-                />
-              </div>
-
-              <a
-  href="mailto:gowdaswami497@@gmail.com?subject=Request%20Quote&body=Hello%20SLV%20Packaging,%0D%0A%0D%0AI%20would%20like%20a%20quote%20for..."
-  className="bg-amber-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-amber-700 transition transform hover:scale-105 inline-block text-center"
->
-  Request Quote
-</a>
-
-            </form>
-          )}
+            {/* Mailto button */}
+            <a
+              href="mailto:gowdaswami497@gmail.com?subject=Request%20Quote&body=Hello%20SLV%20Packaging,%0D%0A%0D%0AI%20would%20like%20a%20quote%20for..."
+              className="bg-amber-600 text-white font-semibold px-6 py-3 rounded-xl hover:bg-amber-700 transition transform hover:scale-105 inline-block text-center"
+            >
+              Request Quote
+            </a>
+          </form>
         </div>
       </section>
 
@@ -189,7 +120,9 @@ const GetQuote = () => {
       <footer className="bg-gray-800 text-white py-8 px-6">
         <div className="max-w-6xl mx-auto text-center">
           <SLVLogo className="h-10 w-auto mx-auto mb-4" />
-          <p className="text-gray-400">© {new Date().getFullYear()} SLV Packaging. All rights reserved.</p>
+          <p className="text-gray-400">
+            © {new Date().getFullYear()} SLV Packaging. All rights reserved.
+          </p>
         </div>
       </footer>
     </div>
