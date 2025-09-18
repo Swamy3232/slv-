@@ -154,7 +154,7 @@ Requirements: ${formData.requirements}
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  placeholder="+91 9008503517"
+                  placeholder=""
                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 outline-none transition duration-200"
                 />
               </div>
