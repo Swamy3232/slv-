@@ -87,8 +87,8 @@ const ContactUs = () => {
   };
 
   const address = "SLV Packaging, 10/11 Chandana Layout, Kebbehalla Main RD, Sunkadakatte, Bangalore, Karnataka, India - 560091";
-  const phone = "9008503517";
-const email = "Venkys1969@gmail.com";
+  const phone = "+91 90085 03517";
+const email = "info@slvpackaging.com";
 const whatsappLink = `https://wa.me/91${phone}`;
 
   const mapsLink = "https://maps.google.com/maps?q=12.9836571%2C77.5075547&z=17&hl=en";
@@ -108,7 +108,7 @@ const whatsappLink = `https://wa.me/91${phone}`;
   const body = `Name: ${formData.name}%0AEmail: ${formData.email}%0AMessage: ${formData.message}`;
 
   // Open default email client with prefilled details
-  window.location.href = `mailto:Venkys1969@gmail.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+  window.location.href = `mailto:info@slvpackaging.com?subject=${encodeURIComponent(subject)}&body=${body}`;
 
   // Reset form
   setFormData({ name: "", email: "", message: "" });
@@ -201,7 +201,7 @@ const whatsappLink = `https://wa.me/91${phone}`;
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
           </div>
-          <h3 className="text-xl font-semibold text-gray-800 mb-3">Email</h3>
+          <h3 className="text-xl font-semibold text-gray-800 mb-3">Mail</h3>
           <p className="text-gray-600 mb-4">{email}</p>
           <a
             href={`mailto:${email}`}
@@ -346,8 +346,8 @@ const whatsappLink = `https://wa.me/91${phone}`;
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
-            <p className="text-gray-400">Phone: 9008503517</p>
+            <p className="text-gray-400">Mail: <a href="mailto:info@slvpackaging.com" className="text-amber-400 hover:text-amber-300 transition-colors">info@slvpackaging.com</a></p>
+            <p className="text-gray-400">Phone: <a href="tel:+919008503517" className="text-amber-400 hover:text-amber-300 transition-colors">+91 90085 03517</a></p>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">

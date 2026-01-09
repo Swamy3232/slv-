@@ -52,12 +52,13 @@ const ClientsPage = () => {
       { threshold: 0.1 }
     );
 
-    sectionRefs.current.forEach((ref) => {
+    const currentRefs = sectionRefs.current;
+    currentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
 
     return () => {
-      sectionRefs.current.forEach((ref) => {
+      currentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
@@ -130,8 +131,8 @@ const ClientsPage = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
-            <p className="text-gray-400">Phone: 9008503517</p>
+            <p className="text-gray-400">Mail: <a href="mailto:info@slvpackaging.com" className="text-amber-400 hover:text-amber-300 transition-colors">info@slvpackaging.com</a></p>
+            <p className="text-gray-400">Phone: <a href="tel:+919008503517" className="text-amber-400 hover:text-amber-300 transition-colors">+91 90085 03517</a></p>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">

@@ -56,7 +56,7 @@ Requirements: ${formData.requirements}
 
     setTimeout(() => {
       // Open user's email client
-      window.location.href = `mailto:Venkys1969@gmail.com?subject=${encodeURIComponent(
+      window.location.href = `mailto:info@slvpackaging.com?subject=${encodeURIComponent(
         subject
       )}&body=${encodeURIComponent(body)}`;
 
@@ -261,8 +261,8 @@ Requirements: ${formData.requirements}
 
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
-            <p className="text-gray-400">Phone: +91 9008503517</p>
+            <p className="text-gray-400">Mail: <a href="mailto:info@slvpackaging.com" className="text-amber-400 hover:text-amber-300 transition-colors">info@slvpackaging.com</a></p>
+            <p className="text-gray-400">Phone: <a href="tel:+919008503517" className="text-amber-400 hover:text-amber-300 transition-colors">+91 90085 03517</a></p>
           </div>
         </div>
 

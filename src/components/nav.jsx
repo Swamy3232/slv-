@@ -8,16 +8,14 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
+    { name: "About", href: "/about" },
     { name: "Products", href: "/products" },
-    {name: "Clients", href: "/clients"},
-    { name: "Contact & Location", href: "/contact" },
-    
-
+    { name: "Clients", href: "/clients" },
+    { name: "Contact", href: "/contact" },
   ];
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     setActiveLink(window.location.pathname);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -27,148 +25,158 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-md shadow-lg py-2 border-b border-gray-100"
-          : "bg-white/80 backdrop-blur-sm py-4"
+          ? "bg-white shadow-md py-3 border-b border-gray-100"
+          : "bg-white py-5"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-        {/* Logo */}
-        <a href="/" className="flex items-center group">
-          <div className="w-12 h-12 bg-gradient-to-br from-blue-700 to-indigo-800 rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300">
-            <span className="text-white font-bold text-xl tracking-tight">SLV</span>
-          </div>
-          <div className="ml-3">
-            <div className="text-xl font-bold text-gray-800 tracking-tight group-hover:text-indigo-700 transition-colors">
-              Packaging
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <a href="/" className="flex items-center space-x-3 group">
+            <div className="w-12 h-12 bg-gradient-to-br from-gray-900 to-gray-800 rounded-lg flex items-center justify-center shadow-sm">
+              <span className="text-white font-bold text-xl tracking-tighter">SLV</span>
             </div>
-            <div className="text-xs text-gray-500 mt-0.5 tracking-wider">SINCE 2013</div>
-          </div>
-        </a>
+            <div className="flex flex-col">
+              <span className="text-xl font-semibold text-gray-900 tracking-tight">
+                Packaging 
+              </span>
+              <span className="text-xs text-gray-500 font-medium tracking-wide">
+                EST. 2013
+              </span>
+            </div>
+          </a>
 
-        {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-1 text-gray-700 font-medium">
-          {navLinks.map((link) => (
-            <li key={link.name} className="relative">
-              <a
-                href={link.href}
-                className={`px-4 py-2.5 rounded-xl transition-all duration-200 relative group ${
-                  activeLink === link.href
-                    ? "text-indigo-700 font-semibold bg-indigo-50"
-                    : "hover:text-indigo-600"
-                }`}
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center space-x-1">
+            <ul className="flex items-center space-x-1">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    className={`px-5 py-2.5 text-sm font-medium rounded-lg transition-all duration-200 ${
+                      activeLink === link.href
+                        ? "text-indigo-700 bg-indigo-50 font-semibold border border-indigo-200"
+                        : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-50"
+
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <div className="h-6 w-px bg-gray-200 mx-4"></div>
+            <a
+              href="/quote"
+             className="px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-700 
+text-white text-sm font-semibold rounded-lg 
+hover:from-indigo-700 hover:to-indigo-800 
+transition-all duration-200 flex items-center space-x-2 shadow-md"
+
+
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                {link.name}
-                <span
-                  className={`absolute -bottom-1 left-4 w-0 h-0.5 bg-indigo-600 transition-all duration-300 group-hover:w-2/3 ${
-                    activeLink === link.href ? "w-2/3" : ""
-                  }`}
-                ></span>
-              </a>
-            </li>
-          ))}
-        </ul>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                />
+              </svg>
+              <span>Request Quote</span>
+            </a>
+          </div>
 
-        {/* Call to Action */}
-        <a
-          href="/quote"
-          className="hidden md:inline-flex items-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium text-sm shadow-md hover:shadow-lg hover:from-indigo-700 hover:to-blue-700 transition-all duration-300 transform hover:-translate-y-0.5"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 mr-2"
-            viewBox="0 0 20 20"
-            fill="currentColor"
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+            aria-label="Toggle menu"
           >
-            <path
-              fillRule="evenodd"
-              d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Get Quote
-        </a>
+            <div className="w-6 h-5 relative">
+              <span
+                className={`absolute top-0 left-0 w-full h-0.5 bg-gray-700 transition-all duration-300 ${
+                  isOpen ? "top-2 rotate-45" : ""
+                }`}
+              />
+              <span
+                className={`absolute top-2 left-0 w-full h-0.5 bg-gray-700 transition-all duration-300 ${
+                  isOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <span
+                className={`absolute bottom-0 left-0 w-full h-0.5 bg-gray-700 transition-all duration-300 ${
+                  isOpen ? "bottom-2 -rotate-45" : ""
+                }`}
+              />
+            </div>
+          </button>
+        </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden w-10 h-10 flex flex-col justify-center items-center rounded-xl bg-gray-50 hover:bg-indigo-50 focus:outline-none transition-colors duration-200"
-          aria-label="Toggle menu"
-        >
-          <span
-            className={`block w-6 h-0.5 bg-gray-700 mb-1.5 transition-transform duration-300 ${
-              isOpen ? "rotate-45 translate-y-2" : ""
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-gray-700 mb-1.5 transition-opacity duration-300 ${
-              isOpen ? "opacity-0" : "opacity-100"
-            }`}
-          />
-          <span
-            className={`block w-6 h-0.5 bg-gray-700 transition-transform duration-300 ${
-              isOpen ? "-rotate-45 -translate-y-2" : ""
-            }`}
-          />
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-100 shadow-xl">
-          <ul className="flex flex-col p-4 space-y-1">
-            {navLinks.map((link) => (
-              <li key={link.name}>
+        {/* Mobile Menu */}
+        {isOpen && (
+          <div className="lg:hidden mt-4 pb-4 border-t border-gray-100 pt-4">
+            <ul className="space-y-1">
+              {navLinks.map((link) => (
+                <li key={link.name}>
+                  <a
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className={`flex items-center justify-between py-3 px-4 rounded-lg transition-all duration-200 ${
+                      activeLink === link.href
+                        ? "bg-gray-50 text-gray-900 font-medium"
+                        : "text-gray-600 hover:bg-gray-50"
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    {activeLink === link.href && (
+                      <svg
+                        className="w-4 h-4 text-gray-900"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    )}
+                  </a>
+                </li>
+              ))}
+              <li className="pt-3 mt-3 border-t border-gray-100">
                 <a
-                  href={link.href}
+                  href="/quote"
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center py-3 px-5 rounded-xl transition-all duration-200 ${
-                    activeLink === link.href
-                      ? "bg-indigo-50 text-indigo-700 font-semibold"
-                      : "hover:bg-gray-50 text-gray-700"
-                  }`}
+                  className="flex items-center justify-center space-x-2 py-3 px-4 bg-gray-900 text-white font-medium rounded-lg hover:bg-gray-800 transition-all duration-200"
                 >
-                  {link.name}
-                  {activeLink === link.href && (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4 ml-auto text-indigo-600"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  )}
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                    />
+                  </svg>
+                  <span>Request Quote</span>
                 </a>
               </li>
-            ))}
-            <li className="pt-3 mt-2 border-t border-gray-200">
-              <a
-                href="/quote"
-                onClick={() => setIsOpen(false)}
-                className="flex justify-center items-center py-3 px-5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium hover:from-indigo-700 hover:to-blue-700 transition-all duration-300"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5 mr-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Get Quote
-              </a>
-            </li>
-          </ul>
-        </div>
-      )}
+            </ul>
+          </div>
+        )}
+      </div>
     </nav>
   );
 };

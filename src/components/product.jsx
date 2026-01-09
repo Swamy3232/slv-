@@ -249,7 +249,7 @@ const Product = () => {
   <img
     src={product.image}
     alt={product.name}
-    className="w-full h-48 object-cover transition-transform duration-500 hover:scale-102 max-h-48"
+    className="w-full h-48 object-contain max-h-48"
   />
   <div className="absolute top-4 right-4 bg-amber-600 text-white text-xs font-semibold px-2 py-1 rounded-full">
     {product.category.toUpperCase()}
@@ -283,7 +283,7 @@ const Product = () => {
               <img
                 src={selectedProduct.image}
                 alt={selectedProduct.name}
-                className="w-full h-64 object-cover"
+                className="w-full h-80 object-contain bg-gray-50"
               />
             </div>
             <div className="p-6">
@@ -355,8 +355,8 @@ const Product = () => {
           </div>
           <div>
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <p className="text-gray-400">Email: Venkys1969@gmail.com</p>
-            <p className="text-gray-400">Phone: 9008503517</p>
+            <p className="text-gray-400">Mail: <a href="mailto:info@slvpackaging.com" className="text-amber-400 hover:text-amber-300 transition-colors">info@slvpackaging.com</a></p>
+            <p className="text-gray-400">Phone: <a href="tel:+919008503517" className="text-amber-400 hover:text-amber-300 transition-colors">+91 90085 03517</a></p>
           </div>
         </div>
         <div className="max-w-7xl mx-auto mt-8 pt-8 border-t border-gray-700 text-center text-gray-500">
